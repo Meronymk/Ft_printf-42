@@ -6,44 +6,61 @@
 /*   By: krochefo <krochefo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 12:07:05 by krochefo          #+#    #+#             */
-/*   Updated: 2022/04/25 13:59:36 by krochefo         ###   ########.fr       */
+/*   Updated: 2022/04/27 21:38:17 by krochefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_hexalen(unsigned long list)
+static int	ft_count_hex(unsigned int n)
 {
-	int	len;
+	int	i;
 
-	len = 0;
-	while (list >= 16)
+	i = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
 	{
-		list /= 16;
-		len++;
+		n = n / 16;
+		i++;
 	}
-	return (len);
+	return (i);
 }
 
-int	ft_hexa(unsigned int list, char c)
+static char	*ft_hex_to_str(unsigned int n, int c)
 {
-	unsigned long	lst;
-	char			*hexabase;
-	int				len;
-	int				i;
+	int		size;
+	char	*hex;
+	char	*base;
 
-	hexabase = "0123456789abcdef";
-	len = 0;
-	i = 0;
-	lst = list;
-	if (c == 'X')
-		hexabase = "0123456789ABCDEF";
-	if (lst >= 16)
+		base = "0123456789ABCDEF";
+	if (c == 'x')
+		base = "0123456789abcdef";
+	size = ft_count_hex(n);
+	hex = (char *)malloc(sizeof(char) * (size + 1));
+	if (!hex)
+		return (NULL);
+	hex[size] = '\0';
+	while (size > 0)
 	{
-		ft_hexa((lst / 16), c);
-		ft_hexa((lst % 16), c);
+		hex[size - 1] = base[n % 16];
+		n = n / 16;
+		size--;
 	}
-	else
-		write(1, &hexabase[lst], 1);
-	return (ft_hexalen(list));
+	return (hex);
+}
+
+int	ft_hexa(unsigned int nbr, char c)
+{
+	int		len;
+	char	*str;
+	char	*base;
+
+	base = "0123456789ABCDEF";
+	if (c == 'x')
+		base = "0123456789abcdef";
+	str = ft_hex_to_str(nbr, c);
+	len = ft_putstr(str);
+	free(str);
+	return (len);
 }

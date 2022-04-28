@@ -13,7 +13,7 @@
 
 SRCS = ft_printf.c ft_hexa.c ft_intdec.c ft_ptr.c ft_putchar.c ft_putstr.c \
 		ft_specifier.c ft_unsigned.c ft_itoa.c ft_strdup.c \
-		ft_memset.c ft_strlen.c ft_calloc.c main.c
+		ft_memset.c ft_strlen.c ft_calloc.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -23,7 +23,7 @@ RM = rm -f
 
 CFLAGS = -Wall -Wextra -Werror
 
-NAME = ft_printf.a
+NAME = libftprintf.a
 
 LIBAR = ar rcs
 

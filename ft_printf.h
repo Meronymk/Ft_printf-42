@@ -6,7 +6,7 @@
 /*   By: krochefo <krochefo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 09:19:43 by krochefo          #+#    #+#             */
-/*   Updated: 2022/04/27 12:03:49 by krochefo         ###   ########.fr       */
+/*   Updated: 2022/04/27 21:03:30 by krochefo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <stddef.h>
 
-int		ft_ptr(int list);
+int		ft_ptr(va_list list);
 int		ft_putchar(char c);
 int		ft_intdec(int nbr);
 int		ft_putstr(char *str);
